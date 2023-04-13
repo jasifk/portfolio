@@ -10,5 +10,6 @@ export const siteConfig: SiteConfig = {
     linkedIn: "https://www.linkedin.com/in/jasifshameem",
     github: "https://github.com/jasifk",
     email: "hello@jasif.dev",
+    twitter: "https://twitter.com/devjasif"
   },
 }
