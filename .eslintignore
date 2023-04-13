@@ -1,6 +1,5 @@
-.next
-next-env.d.ts
-node_modules
-yarn.lock
-package-lock.json
+dist/*
+.cache
 public
+node_modules
+*.esm.js
