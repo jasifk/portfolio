@@ -24,11 +24,17 @@ export const metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    "Next.js",
+    "Portfolio",
+    "Personal",
+    "Fullstack developer",
+    "NextJS",
+    "NestJS",
+    "jasif",
+    "Nodejs",
     "React",
-    "Tailwind CSS",
-    "Server Components",
-    "Radix UI",
+    "tailwind",
+    "front-end",
+    "back-end",
   ],
   authors: [
     {
@@ -36,6 +42,7 @@ export const metadata = {
       url: "https://jasif.dev",
     },
   ],
+  referrer: "origin-when-cross-origin",
   creator: "jasif",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -70,6 +77,19 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {

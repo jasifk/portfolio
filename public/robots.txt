@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+
+Sitemap: https://jasif.dev/sitemap.xml
