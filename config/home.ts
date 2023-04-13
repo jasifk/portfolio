@@ -9,12 +9,12 @@ export const homeConfig: HomeConfig = {
     },
     {
       title: "Blog",
-      href: "/blog",
+      href: "#blog",
       disabled: true,
     },
     {
       title: "Contact",
-      href: "/contact",
+      href: "#contact",
       disabled: true,
     },
   ],

@@ -76,7 +76,9 @@ export const metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: `${siteConfig.url}/site.webmanifest`,
+  // temporarily removed as cors error
+  // TODO: check with nextjs
+  // manifest: `${siteConfig.url}/site.webmanifest`,
   robots: {
     index: false,
     follow: true,
