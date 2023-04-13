@@ -72,8 +72,8 @@ export const metadata = {
     creator: "@jasifk",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
+    icon: { url: "/favicon.svg", type: "image/svg" },
+    shortcut: { url: "/favicon.svg", type: "image/svg" },
     apple: "/apple-touch-icon.png",
   },
   // temporarily removed as cors error
