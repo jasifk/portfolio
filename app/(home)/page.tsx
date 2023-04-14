@@ -2,7 +2,8 @@ import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import AboutMe from "@/components/about-me"
-import { buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/app-button"
+import Skills from "@/components/skills"
 
 export default function HomePage() {
   return (
@@ -30,8 +31,7 @@ export default function HomePage() {
             rel="noreferrer"
             className={buttonVariants({
               size: "lg",
-              className:
-                "my-2 border-emerald-500 hover:border-emerald-400 text-emerald-400 dark:text-emerald-400 hover:text-emerald-300 dark:hover:text-emerald-400 hover:bg-emerald-50",
+              className: "my-2",
               variant: "outline",
             })}
           >
@@ -40,6 +40,7 @@ export default function HomePage() {
         </div>
       </section>
       <AboutMe />
+      <Skills />
     </>
   )
 }

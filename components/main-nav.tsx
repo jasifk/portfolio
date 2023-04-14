@@ -41,6 +41,7 @@ export function MainNav({ items }: MainNavProps) {
                   )}
                 >
                   {item.title}
+                  <span className="text-emerald-400">.</span>
                 </Link>
               )
           )}
@@ -71,7 +72,10 @@ export function MainNav({ items }: MainNavProps) {
             (item, index) =>
               item.href && (
                 <DropdownMenuItem key={index} asChild>
-                  <Link href={item.href}>{item.title}</Link>
+                  <Link aria-disabled={item.disabled} href={item.href}>
+                    {item.title}
+                    <span className="text-emerald-400">.</span>
+                  </Link>
                 </DropdownMenuItem>
               )
           )}
