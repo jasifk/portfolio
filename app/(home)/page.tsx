@@ -7,16 +7,17 @@ import { buttonVariants } from "@/components/ui/button"
 export default function HomePage() {
   return (
     <>
-      <section className="container mx-auto grid h-screen min-h-screen items-center justify-center gap-6 p-0">
-        <div className="flex max-w-[1000px] flex-col items-start gap-2">
-          <p className="max-w-[700px] py-2 text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
+      <section className="container mx-auto grid h-screen min-h-screen items-center gap-6 p-0">
+        <div className="flex flex-col items-start gap-2 px-6">
+          <p className="max-w-[700px] py-2 text-lg text-emerald-400 sm:text-xl">
             Hi👋, my name is
           </p>
           <h1 className="lg:text-10xl py-2 text-5xl font-extrabold leading-tight tracking-tighter sm:text-5xl md:text-7xl">
-            Jasif Shameem.
+            Jasif Shameem<span className="text-emerald-400">.</span>
           </h1>
           <h2 className="py-2 text-4xl font-extrabold leading-tight tracking-tighter text-slate-700 dark:text-slate-400 sm:text-4xl md:text-5xl lg:text-6xl">
-            Crafting digital experiences with code.
+            Crafting digital experiences with code
+            <span className="text-emerald-600">.</span>
           </h2>
           <p className="max-w-[540px] py-2 text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
             Building stunning and responsive websites with expertise in both
@@ -27,7 +28,12 @@ export default function HomePage() {
             href={siteConfig.links.linkedIn}
             target="_blank"
             rel="noreferrer"
-            className={buttonVariants({ size: "lg", className: "my-2" })}
+            className={buttonVariants({
+              size: "lg",
+              className:
+                "my-2 border-emerald-500 hover:border-emerald-400 text-emerald-400 dark:text-emerald-400 hover:text-emerald-300 dark:hover:text-emerald-400 hover:bg-emerald-50",
+              variant: "outline",
+            })}
           >
             Let&apos;s chat
           </Link>

@@ -2,21 +2,21 @@ import Image from "next/image"
 
 export default function AboutMe() {
   return (
-    <section className="py-24">
-      <div className="mx-auto flex max-w-[1000px] flex-wrap items-start pt-4 pb-12 ">
+    <section className="container h-auto">
+      <div className="mx-auto flex flex-wrap items-start pt-4 pb-6">
         <h2 className="my-2 w-full text-left text-3xl font-bold leading-tight text-slate-700 dark:text-slate-400">
-          About Me
+          About Me<span className="text-emerald-400">.</span>
         </h2>
         <div className="w-full p-0 md:w-2/3">
-          <div className="mx-auto my-10">
-            <p className="text-lg text-slate-700 dark:text-slate-400 py-2">
+          <div className="mx-auto">
+            <p className="py-2 text-lg text-slate-700 dark:text-slate-400">
               I&apos;m a Full Stack Web Developer with a passion for creating
               innovative and memorable digital experiences. My journey in web
               development started when I built a website for my college tech
               fest. I was fascinated by the power of technology to bring people
               together and solve problems.
             </p>
-            <p className="text-lg text-slate-700 dark:text-slate-400 py-2">
+            <p className="py-2 text-lg text-slate-700 dark:text-slate-400">
               After completing my degree in Computer Science, I started my
               career as a Front-end Developer and quickly expanded my skillset
               to include Node.js, Express, and other back-end technologies.
@@ -26,15 +26,17 @@ export default function AboutMe() {
             </p>
           </div>
         </div>
-        <div className="w-full pl-12 md:w-1/3">
-          <div className="mx-auto my-10 max-w-sm">
-            <Image
-              className="w-full"
-              src="/profile-pic.png"
-              alt="Profile picture"
-              width={150}
-              height={150}
-            />
+        <div className="w-full md:w-1/3 md:pl-12">
+          <div className="flex justify-center py-12 md:py-0">
+            <div className="rounded-full border-4 border-emerald-400 p-2 transition-all hover:p-0">
+              <Image
+                className="w-48 rounded-full grayscale transition-all hover:grayscale-0"
+                src="/profile-pic.png"
+                alt="Profile picture"
+                width={250}
+                height={250}
+              />
+            </div>
           </div>
         </div>
       </div>
