@@ -1,5 +1,8 @@
 import Link from "next/link"
+import { NavItem } from "@/types"
 
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import {
@@ -8,11 +11,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { NavItem } from "@/types"
 
 interface MainNavProps {
   items?: NavItem[]
@@ -22,9 +22,9 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo className="h-6 w-6" />
+        <Icons.logo className="h-6 w-6 text-emerald-400" />
         <span className="hidden font-bold sm:inline-block">
-          {siteConfig.name}
+          jasif<span className="text-emerald-400">.</span>dev
         </span>
       </Link>
       {items?.length ? (
@@ -41,6 +41,7 @@ export function MainNav({ items }: MainNavProps) {
                   )}
                 >
                   {item.title}
+                  <span className="text-emerald-400">.</span>
                 </Link>
               )
           )}
@@ -71,7 +72,10 @@ export function MainNav({ items }: MainNavProps) {
             (item, index) =>
               item.href && (
                 <DropdownMenuItem key={index} asChild>
-                  <Link href={item.href}>{item.title}</Link>
+                  <Link aria-disabled={item.disabled} href={item.href}>
+                    {item.title}
+                    <span className="text-emerald-400">.</span>
+                  </Link>
                 </DropdownMenuItem>
               )
           )}

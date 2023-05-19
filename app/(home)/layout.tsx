@@ -9,7 +9,7 @@ export default async function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <>
       <SiteHeader />
-      <main className="max-[1600px] my-auto w-full px-28">{children}</main>
+      <main className="max-[1600px] my-auto w-full">{children}</main>
       <SiteFooter />
     </>
   )
