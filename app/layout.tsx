@@ -39,7 +39,7 @@ export const metadata = {
   authors: [
     {
       name: "jasif",
-      url: "https://jasif.dev",
+      url: "https://jasif.me",
     },
   ],
   referrer: "origin-when-cross-origin",
