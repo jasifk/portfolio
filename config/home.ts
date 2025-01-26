@@ -19,7 +19,6 @@ export const homeConfig: HomeConfig = {
     {
       title: "Contact",
       href: "#contact",
-      disabled: true,
     },
   ],
 }

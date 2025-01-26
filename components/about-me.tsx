@@ -3,7 +3,7 @@ import Image from "next/image"
 export default function AboutMe() {
   return (
     <section id="about" className="container h-auto pb-40">
-      <div className="mx-auto flex flex-wrap items-start pt-4 pb-6">
+      <div className="mx-auto flex flex-wrap items-start pb-6 pt-4">
         <h2 className="my-2 w-full text-left text-3xl font-bold leading-tight text-slate-700 dark:text-slate-400">
           About Me<span className="text-emerald-400">.</span>
         </h2>
@@ -37,8 +37,8 @@ export default function AboutMe() {
           <div className="flex justify-center py-12 md:py-0">
             <div className="rounded-full border-4 border-emerald-400 p-2 transition-all hover:p-0">
               <Image
-                className="w-48 rounded-full grayscale transition-all hover:grayscale-0"
-                src="/profile-pic.png"
+                className="size-48 rounded-full object-cover grayscale transition-all hover:grayscale-0"
+                src="/profile-pic.jpg"
                 alt="Profile picture"
                 width={250}
                 height={250}

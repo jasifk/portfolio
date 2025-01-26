@@ -3,6 +3,7 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import AboutMe from "@/components/about-me"
 import { buttonVariants } from "@/components/app-button"
+import Contact from "@/components/contact"
 import Skills from "@/components/skills"
 
 export default function HomePage() {
@@ -41,6 +42,7 @@ export default function HomePage() {
       </section>
       <AboutMe />
       {/* <Skills /> */}
+      <Contact />
     </>
   )
 }
