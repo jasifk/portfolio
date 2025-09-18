@@ -9,12 +9,10 @@ export const homeConfig: HomeConfig = {
     {
       title: "Skills",
       href: "#skills",
-      disabled: true,
     },
     {
-      title: "Blog",
-      href: "#blog",
-      disabled: true,
+      title: "Work",
+      href: "#work",
     },
     {
       title: "Contact",

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { AtSign, Phone } from "lucide-react"
 
-import { Button } from "./ui/button"
+import { Button } from "./app-button"
 import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
 
@@ -121,7 +121,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <Button type="submit" className="w-24">
+                <Button type="submit" className="w-24" variant="outline">
                   Send
                 </Button>
               </form>

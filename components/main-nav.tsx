@@ -24,7 +24,7 @@ export function MainNav({ items }: MainNavProps) {
       <Link href="/" className="hidden items-center space-x-2 md:flex">
         <Icons.logo className="size-6 text-emerald-400" />
         <span className="hidden font-bold sm:inline-block">
-          jasif<span className="text-emerald-400">.</span>dev
+          jasif<span className="text-emerald-400">.</span>me
         </span>
       </Link>
       {items?.length ? (

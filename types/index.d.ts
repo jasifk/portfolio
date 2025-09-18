@@ -13,9 +13,10 @@ export type SiteConfig = {
   description: string
   url: string
   ogImage: string
+  ogDescription: string
   links: {
     linkedIn: string
-    twitter: string
+    x: string
     github: string
     email: string
   }
