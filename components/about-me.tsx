@@ -72,11 +72,11 @@ export default function AboutMe() {
 
             <div className="space-y-3 sm:space-y-4 text-slate-700 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
               <p>
-                Hello! I&apos;m Jasif, a passionate and experienced
+                Hello! I&apos;m Jasif, a passionate and experienced{" "}
                 <span className="font-bold text-emerald-400">
                   Backend Tech Lead and Full-Stack Developer
                 </span>
-                based in Kerala, India. For over seven years, I&apos;ve been immersed
+                {" "}based in Kerala, India. For over seven years, I&apos;ve been immersed
                 in the world of software development, leading the architecture
                 and creation of high-performance backend systems.
               </p>

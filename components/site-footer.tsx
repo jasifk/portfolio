@@ -9,17 +9,6 @@ export function SiteFooter() {
       <div className="container flex h-16 items-center justify-between space-x-4">
         <div className="flex flex-row items-center gap-2 px-8">
           <Icons.logo className="size-6" />
-          <p className="text-center text-sm leading-loose md:hidden">
-            Built by{" "}
-            <a
-              href={siteConfig.links.linkedIn}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              jasifk
-            </a>
-          </p>
           <p className="hidden text-center text-sm leading-loose md:inline-block md:text-left">
             Built by{" "}
             <a
