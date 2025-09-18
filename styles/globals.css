@@ -9,3 +9,26 @@
 /* ::-webkit-scrollbar-thumb {
 
 } */
+
+:root {
+  /* Custom Portfolio Colors */
+  --portfolio-bg-primary: #1A202C;
+  --portfolio-accent: #34d399 ;
+  --portfolio-accent-hover: #34d399 ;
+  --portfolio-text-primary: #F7FAFC;
+  --portfolio-text-secondary: #A0AEC0;
+  --portfolio-text-muted: #718096;
+  --portfolio-border: #2D3748;
+  --portfolio-card-bg: #2D3748;
+  --portfolio-card-hover: #4A5568;
+}
+
+.bg-portfolio-primary { background-color: var(--portfolio-bg-primary); }
+.bg-portfolio-accent { background-color: var(--portfolio-accent); }
+.bg-portfolio-card { background-color: var(--portfolio-card-bg); }
+.text-portfolio-primary { color: var(--portfolio-text-primary); }
+.text-portfolio-secondary { color: var(--portfolio-text-secondary); }
+.text-portfolio-muted { color: var(--portfolio-text-muted); }
+.border-portfolio { border-color: var(--portfolio-border); }
+.hover\:bg-portfolio-accent-hover:hover { background-color: var(--portfolio-accent-hover); }
+.hover\:bg-portfolio-card-hover:hover { background-color: var(--portfolio-card-hover); }

@@ -3,7 +3,9 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import AboutMe from "@/components/about-me"
 import { buttonVariants } from "@/components/app-button"
+import Contact from "@/components/contact"
 import Skills from "@/components/skills"
+import Work from "@/components/work"
 
 export default function HomePage() {
   return (
@@ -21,7 +23,7 @@ export default function HomePage() {
             <span className="text-emerald-600">.</span>
           </h2>
           <p className="max-w-[540px] py-2 text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
-            Building stunning and responsive websites with expertise in both
+            Building stunning and responsive websites and mobile apps with expertise in both
             front-end and back-end development. Let&apos;s bring your vision to
             life!
           </p>
@@ -40,7 +42,9 @@ export default function HomePage() {
         </div>
       </section>
       <AboutMe />
-      {/* <Skills /> */}
+      <Skills />
+      <Work />
+      <Contact />
     </>
   )
 }

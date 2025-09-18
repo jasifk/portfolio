@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="border-t border-t-slate-200 bg-white text-slate-600  dark:border-t-slate-700 dark:bg-slate-900 dark:text-slate-400">
       <div className="container flex h-16 items-center justify-between space-x-4">
         <div className="flex flex-row items-center gap-2 px-8">
-          <Icons.logo className="h-6 w-6" />
+          <Icons.logo className="size-6" />
           <p className="text-center text-sm leading-loose md:hidden">
             Built by{" "}
             <a

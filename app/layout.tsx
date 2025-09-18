@@ -35,6 +35,10 @@ export const metadata = {
     "tailwind",
     "front-end",
     "back-end",
+    "Tech Lead",
+    "Backend Developer",
+    "Kerala",
+    "India",
   ],
   authors: [
     {
@@ -44,16 +48,16 @@ export const metadata = {
   ],
   referrer: "origin-when-cross-origin",
   creator: "jasif",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "white" },
+  //   { media: "(prefers-color-scheme: dark)", color: "black" },
+  // ],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
     title: siteConfig.title,
-    description: siteConfig.description,
+    description: siteConfig.ogDescription,
     siteName: siteConfig.name,
     images: [
       {
@@ -67,7 +71,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
-    description: siteConfig.description,
+    description: siteConfig.ogDescription,
     images: [`${siteConfig.url}/og.jpg`],
     creator: "@jasifk",
   },
