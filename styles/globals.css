@@ -23,16 +23,12 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 240, 255, 0.2) transparent;
+  /* Reserve scrollbar gutter so hiding overflow never shifts layout */
+  scrollbar-gutter: stable;
 }
 
-html.has-menu-open,
-html.has-menu-open body {
-  overflow: hidden !important;
-}
-
-/* Ensure header stays sharp and above the portal when menu is open */
-html.has-menu-open header {
-  z-index: 150 !important;
+html.has-menu-open {
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {

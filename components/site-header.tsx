@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 
 import { homeConfig } from "@/config/home"
@@ -6,8 +9,35 @@ import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 
 export function SiteHeader() {
+  const [hidden, setHidden] = useState(false)
+  const lastY = useRef(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY
+      // Always show when near the top
+      if (currentY < 10) {
+        setHidden(false)
+      } else if (currentY > lastY.current + 8) {
+        // Scrolling down — hide
+        setHidden(true)
+      } else if (currentY < lastY.current - 8) {
+        // Scrolling up — show
+        setHidden(false)
+      }
+      lastY.current = currentY
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <header className="glass-nav sticky top-0 z-50 w-full transition-all duration-500 [.has-menu-open_&]:fixed [.has-menu-open_&]:z-[200] [.has-menu-open_&]:duration-0">
+    <header
+      className={`glass-nav sticky top-0 z-50 w-full transition-transform duration-300 ease-in-out ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <div className="container flex gap-6 h-16 items-center justify-between">
         <MainNav items={homeConfig.mainNav} />
         {/* Social icons — hidden on mobile, shown in sidebar instead */}
