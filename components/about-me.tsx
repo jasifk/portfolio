@@ -1,105 +1,115 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 
 export default function AboutMe() {
+  const [scanning, setScanning] = useState(false)
+
+  const handleScan = () => {
+    if (scanning) return
+    setScanning(true)
+    setTimeout(() => setScanning(false), 2100)
+  }
+
   return (
-    // <section id="about" className="container h-auto pb-40">
-    //   <div className="mx-auto flex flex-wrap items-start pb-6 pt-4">
-    //     <h2 className="my-2 w-full text-left text-3xl font-bold leading-tight text-slate-700 dark:text-slate-400">
-    //       About Me<span className="text-emerald-400">.</span>
-    //     </h2>
-    //     <div className="w-full p-0 md:w-2/3">
-    //       <div className="mx-auto">
-    //         <p className="py-2 text-lg text-slate-700 dark:text-slate-400">
-    //           I&apos;m a{" "}
-    //           <span className="font-bold text-emerald-400">
-    //             Full Stack Web Developer
-    //           </span>{" "}
-    //           with a passion for creating innovative and memorable digital
-    //           experiences. My journey in web development started when I built a
-    //           website for my college tech fest. I was fascinated by the power of
-    //           technology to bring people together and solve problems.
-    //         </p>
-    //         <p className="py-2 text-lg text-slate-700 dark:text-slate-400">
-    //           After completing my{" "}
-    //           <span className="font-bold text-emerald-400">
-    //             degree in Computer Science
-    //           </span>
-    //           , I started my career as a Front-end Developer and quickly
-    //           expanded my skillset to include Node.js, Express, and other
-    //           back-end technologies. I&apos;ve since worked on a wide range of
-    //           projects for clients in various industries, always striving to
-    //           stay ahead of the curve and create solutions that exceed
-    //           expectations.
-    //         </p>
-    //       </div>
-    //     </div>
-    //     <div className="w-full md:w-1/3 md:pl-12">
-    //       <div className="flex justify-center py-12 md:py-0">
-    //         <div className="rounded-full border-4 border-emerald-400 p-2 transition-all hover:p-0">
-    //           <Image
-    //             className="size-48 rounded-full object-cover grayscale transition-all hover:grayscale-0"
-    //             src="/profile-pic.jpg"
-    //             alt="Profile picture"
-    //             width={250}
-    //             height={250}
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
-    <section id="about" className="py-12 sm:py-16 lg:py-20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <section id="about" className="px-6 py-16 sm:py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Profile Image */}
-          <div className="flex justify-center lg:justify-start order-1 lg:order-1">
-            <div className="w-80 h-80 rounded-2xl flex items-center justify-center">
-              <Image
-                className="overflow-hidden rounded-2xl object-cover grayscale transition-all hover:grayscale-0"
-                src="/profile-pic.jpg"
-                alt="Profile picture"
-                width={288}
-                height={288}
-              />
+          <div className="flex justify-center lg:justify-start">
+            <div className="relative">
+              {/* Glowing ring */}
+              <div className="absolute -inset-3 animate-glow-pulse rounded-2xl bg-gradient-to-br from-cyber-cyan/20 via-cyber-violet/10 to-transparent opacity-60 blur-lg" />
+              <div
+                onClick={handleScan}
+                className={`relative overflow-hidden rounded-2xl border border-white/10 ${scanning ? "cursor-default" : "cursor-crosshair"}`}
+              >
+                <Image
+                  className={`size-72 object-cover transition-all duration-700 hover:scale-105 sm:size-80 ${scanning ? "brightness-90" : ""}`}
+                  src="/profile-pic.jpg"
+                  alt="Profile picture"
+                  width={320}
+                  height={320}
+                />
+
+                {/* Cyan tint overlay during scan */}
+                <div
+                  className={`pointer-events-none absolute inset-0 bg-cyber-cyan/5 transition-opacity duration-200 ${scanning ? "opacity-100" : "opacity-0"}`}
+                />
+
+                {/* Scan line */}
+                {scanning && (
+                  <div
+                    className="pointer-events-none absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyber-cyan to-transparent"
+                    style={{
+                      animation: "scan-line 2s linear forwards",
+                      boxShadow: "0 0 10px 2px rgba(0,240,255,0.6)",
+                      top: "-2px",
+                    }}
+                  />
+                )}
+
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-cyber-bg/50 to-transparent opacity-0 transition-opacity duration-500 hover:opacity-100" />
+              </div>
             </div>
           </div>
 
           {/* About Content */}
-          <div className="space-y-4 sm:space-y-6 order-2 lg:order-2">
-            <h2 className="my-2 w-full text-left text-3xl font-bold leading-tight text-slate-700 dark:text-slate-400">
-              About Me<span className="text-emerald-400">.</span>
-            </h2>
+          <div className="space-y-6">
+            <div>
+              <p className="mb-2 font-mono text-sm tracking-widest text-cyber-cyan">
+                {"// about me"}
+              </p>
+              <h2 className="section-heading">
+                <span className="text-cyber-text">Hello, I&apos;m </span>
+                <span className="gradient-text">Jasif</span>
+                <span className="gradient-text">.</span>
+              </h2>
+            </div>
 
-            <div className="space-y-3 sm:space-y-4 text-slate-700 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
+            <div className="space-y-4 text-sm leading-relaxed text-cyber-muted sm:text-base">
               <p>
-                Hello! I&apos;m Jasif, a passionate and experienced{" "}
-                <span className="font-bold text-emerald-400">
-                  Backend Tech Lead and Full-Stack Developer
-                </span>
-                {" "}based in Kerala, India. For over seven years, I&apos;ve been immersed
-                in the world of software development, leading the architecture
-                and creation of high-performance backend systems.
+                A passionate and experienced{" "}
+                <span className="font-semibold text-cyber-cyan">
+                  Backend Tech Lead and Full-Stack Engineer
+                </span>{" "}
+                based in Kerala, India. For over seven years, I&apos;ve been
+                immersed in the world of software development, leading the
+                architecture and creation of high-performance backend systems.
               </p>
 
               <p>
                 My expertise lies in the Node.js ecosystem, particularly with
-                TypeScript and NestJS, complemented by a strong command of
+                TypeScript and ExpressJS, complemented by a strong command of
                 technologies like RabbitMQ, Redis, and PostgreSQL to ensure
-                optimal performance and reliability. I have a proven track
-                record of guiding architectural decisions, mentoring engineering
-                teams, and maintaining high standards for code quality.
+                optimal performance and reliability.
               </p>
 
               <p>
                 I thrive in fast-paced startup environments and enjoy
                 collaborating with product managers and cross-functional teams
-                to bring ideas to life. My experience spans the full development
-                lifecycle, from translating initial concepts into technical
-                requirements to implementing robust CI/CD pipelines for seamless
-                deployment on cloud platforms like AWS. My goal is always the
-                same: to build efficient, scalable, and reliable software that
-                solves real-world problems.
+                to bring ideas to life. My goal is always the same: to build
+                efficient, scalable, and reliable software that solves
+                real-world problems.
               </p>
+            </div>
+
+            {/* Stats row */}
+            <div className="grid grid-cols-3 gap-3 pt-2 sm:gap-4">
+              <div className="glass-card px-5 py-3">
+                <p className="gradient-text text-2xl font-bold">7+</p>
+                <p className="text-xs text-cyber-dim">Years Experience</p>
+              </div>
+              <div className="glass-card px-5 py-3">
+                <p className="gradient-text text-2xl font-bold">10+</p>
+                <p className="text-xs text-cyber-dim">Projects Delivered</p>
+              </div>
+              <div className="glass-card px-5 py-3">
+                <p className="gradient-text text-2xl font-bold">3+</p>
+                <p className="text-xs text-cyber-dim">Teams Led</p>
+              </div>
             </div>
           </div>
         </div>

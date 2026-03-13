@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
+import { AnimatedBackground } from "@/components/animated-background"
 
 interface HomeLayoutProps {
   children: React.ReactNode
@@ -7,10 +8,13 @@ interface HomeLayoutProps {
 
 export default async function HomeLayout({ children }: HomeLayoutProps) {
   return (
-    <>
-      <SiteHeader />
-      <main className="max-[1600px] my-auto w-full">{children}</main>
-      <SiteFooter />
-    </>
+    <div className="relative min-h-screen">
+      <AnimatedBackground />
+      <div className="relative z-10">
+        <SiteHeader />
+        <main className="mx-auto w-full max-w-[1400px]">{children}</main>
+        <SiteFooter />
+      </div>
+    </div>
   )
 }

@@ -1,32 +1,125 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 import Link from "next/link"
 import { NavItem } from "@/types"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
-import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 interface MainNavProps {
   items?: NavItem[]
 }
 
 export function MainNav({ items }: MainNavProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [activeSection, setActiveSection] = useState<string>("")
+  const sidebarRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = ["about", "skills", "work", "contact"]
+    const intersecting = new Set<string>()
+    const observers: IntersectionObserver[] = []
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            intersecting.add(id)
+          } else {
+            intersecting.delete(id)
+          }
+          // Pick the first section in order that is currently intersecting
+          const next = sectionIds.find((s) => intersecting.has(s)) ?? ""
+          setActiveSection(next)
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
+  }, [])
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false)
+    }
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [isOpen])
+
+  // Close when resizing past mobile breakpoint
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setIsOpen(false)
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  // Click / touch outside sidebar to close
+  useEffect(() => {
+    if (!isOpen || !mounted) return
+    const handleOutside = (e: MouseEvent | TouchEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(e.target as Node)
+      ) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleOutside)
+    document.addEventListener("touchstart", handleOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleOutside)
+      document.removeEventListener("touchstart", handleOutside)
+    }
+  }, [isOpen, mounted])
+
+  // Scroll lock — only on <html>, scrollbar-gutter handles layout stability
+  useEffect(() => {
+    if (!mounted) return
+    const html = document.documentElement
+    if (isOpen) {
+      html.classList.add("has-menu-open")
+    } else {
+      html.classList.remove("has-menu-open")
+    }
+    return () => html.classList.remove("has-menu-open")
+  }, [isOpen, mounted])
+
+  const closeSidebar = () => setIsOpen(false)
+
   return (
-    <div className="flex gap-6 md:gap-10">
-      <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo className="size-6 text-emerald-400" />
-        <span className="hidden font-bold sm:inline-block">
-          jasif<span className="text-emerald-400">.</span>me
+    <>
+      {/* ===== LOGO ===== */}
+      <Link href="/" className="flex items-center space-x-2">
+        <Icons.logo className="size-5 text-cyber-cyan drop-shadow-[0_0_6px_rgba(0,240,255,0.5)] md:size-6" />
+        <span className="font-heading text-sm font-bold md:text-base">
+          <span className="text-cyber-text">jasif</span>
+          <span className="gradient-text">.</span>
+          <span className="text-cyber-text">me</span>
         </span>
       </Link>
+
+      {/* ===== DESKTOP NAV ===== */}
       {items?.length ? (
         <nav className="hidden gap-6 md:flex">
           {items?.map(
@@ -36,51 +129,161 @@ export function MainNav({ items }: MainNavProps) {
                   key={index}
                   href={item.href}
                   className={cn(
-                    "flex items-center text-lg font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-100 sm:text-sm",
-                    item.disabled && "cursor-not-allowed opacity-80"
+                    "group relative flex items-center text-sm font-medium transition-colors duration-300 hover:text-cyber-text",
+                    item.disabled && "cursor-not-allowed opacity-80",
+                    activeSection === item.href?.replace("#", "")
+                      ? "text-cyber-text"
+                      : "text-cyber-muted"
                   )}
                 >
                   {item.title}
-                  <span className="text-emerald-400">.</span>
+                  <span className={cn(
+                    "ml-0.5 font-bold transition-colors duration-300",
+                    activeSection === item.href?.replace("#", "") ? "gradient-text" : "group-hover:gradient-text text-cyber-muted"
+                  )}>.</span>
+                  <span className={cn(
+                    "absolute -bottom-1 left-0 h-px bg-gradient-to-r from-cyber-cyan to-cyber-violet transition-all duration-300",
+                    activeSection === item.href?.replace("#", "") ? "w-full" : "w-0 group-hover:w-full"
+                  )} />
                 </Link>
               )
           )}
         </nav>
       ) : null}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="-ml-4 text-base hover:bg-transparent focus:ring-0 md:hidden"
-          >
-            <Icons.logo className="mr-2 size-4" />{" "}
-            <span className="font-bold">Menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="start"
-          sideOffset={24}
-          className="w-[300px] overflow-scroll"
-        >
-          <DropdownMenuLabel>
-            <Link href="/" className="flex items-center">
-              <Icons.logo className="mr-2 size-4" /> {siteConfig.name}
-            </Link>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          {items?.map(
-            (item, index) =>
-              item.href && (
-                <DropdownMenuItem key={index} asChild>
-                  <Link aria-disabled={item.disabled} href={item.href}>
-                    {item.title}
-                    <span className="text-emerald-400">.</span>
-                  </Link>
-                </DropdownMenuItem>
-              )
+
+      {/* ===== MOBILE: Hamburger Button ===== */}
+      <button
+        ref={buttonRef}
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="relative z-[150] flex size-10 flex-col items-center justify-center gap-[6px] md:hidden"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
+      >
+        <span
+          className={cn(
+            "h-[2px] w-6 rounded-full transition-all duration-300 ease-in-out",
+            isOpen ? "translate-y-[8px] rotate-45 bg-cyber-cyan" : "bg-cyber-text"
           )}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+        />
+        <span
+          className={cn(
+            "h-[2px] w-6 rounded-full transition-all duration-300 ease-in-out",
+            isOpen ? "opacity-0" : "bg-cyber-text opacity-100"
+          )}
+        />
+        <span
+          className={cn(
+            "h-[2px] w-6 rounded-full transition-all duration-300 ease-in-out",
+            isOpen ? "-translate-y-2 -rotate-45 bg-cyber-cyan" : "bg-cyber-text"
+          )}
+        />
+      </button>
+
+      {/* ===== MOBILE: Sidebar + Overlay (Portal) ===== */}
+      {mounted &&
+        createPortal(
+          <div
+            className={cn(
+              "transition-visibility fixed inset-x-0 bottom-0 top-16 z-[100] md:hidden",
+              isOpen ? "visible" : "invisible"
+            )}
+            aria-hidden={!isOpen}
+          >
+            {/* Overlay */}
+            <div
+              className={cn(
+                "absolute inset-0 touch-none bg-black/40 backdrop-blur-md transition-opacity duration-300",
+                isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+              )}
+            />
+
+            {/* Sidebar panel */}
+            <div
+              ref={sidebarRef}
+              className={cn(
+                "absolute inset-y-0 right-0 flex w-[280px] flex-col transition-transform duration-300 ease-in-out",
+                "border-l border-white/5 bg-[rgba(3,0,20,0.85)] backdrop-blur-2xl backdrop-saturate-150",
+                isOpen ? "translate-x-0" : "translate-x-full"
+              )}
+            >
+              {/* Glow accent line */}
+              <div className="glow-line" />
+
+              {/* Nav links */}
+              <nav className="flex flex-1 flex-col gap-2 px-6 pt-8">
+                {items?.map(
+                  (item, index) =>
+                    item.href && (
+                      <Link
+                        key={index}
+                        href={item.href}
+                        onClick={closeSidebar}
+                        tabIndex={isOpen ? 0 : -1}
+                        className={cn(
+                          "group flex items-center py-3 text-2xl font-semibold transition-all duration-300 hover:translate-x-2 hover:text-cyber-text",
+                          item.disabled && "cursor-not-allowed opacity-80",
+                          activeSection === item.href?.replace("#", "")
+                            ? "text-cyber-text"
+                            : "text-cyber-muted"
+                        )}
+                      >
+                        <span className={cn(
+                          "mr-3 font-mono text-xs transition-colors duration-300",
+                          activeSection === item.href?.replace("#", "") ? "text-cyber-cyan" : "text-cyber-cyan/50"
+                        )}>
+                          0{index + 1}
+                        </span>
+                        {item.title}
+                        <span className="gradient-text ml-1 text-3xl font-bold">
+                          .
+                        </span>
+                      </Link>
+                    )
+                )}
+              </nav>
+
+              {/* Social icons */}
+              <div className="mt-auto border-t border-white/5 p-6 font-mono">
+                <p className="mb-3 text-xs tracking-widest text-cyber-dim">
+                  CONNECT
+                </p>
+                <div className="flex items-center gap-4">
+                  <Link
+                    href={siteConfig.links.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={closeSidebar}
+                    tabIndex={isOpen ? 0 : -1}
+                    className="group rounded-lg p-2 text-cyber-muted transition-all duration-300 hover:text-cyber-cyan"
+                  >
+                    <Icons.gitHub className="size-5 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.5)]" />
+                  </Link>
+                  <Link
+                    href={siteConfig.links.linkedIn}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={closeSidebar}
+                    tabIndex={isOpen ? 0 : -1}
+                    className="group rounded-lg p-2 text-cyber-muted transition-all duration-300 hover:text-cyber-cyan"
+                  >
+                    <Icons.linkedIn className="size-5 fill-current transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.5)]" />
+                  </Link>
+                  <Link
+                    href={siteConfig.links.x}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={closeSidebar}
+                    tabIndex={isOpen ? 0 : -1}
+                    className="group rounded-lg p-2 text-cyber-muted transition-all duration-300 hover:text-cyber-cyan"
+                  >
+                    <Icons.x className="size-5 fill-current transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.5)]" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+    </>
   )
 }

@@ -2,45 +2,86 @@ import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import AboutMe from "@/components/about-me"
-import { buttonVariants } from "@/components/app-button"
 import Contact from "@/components/contact"
+import ScrollIndicator from "@/components/scroll-indicator"
 import Skills from "@/components/skills"
 import Work from "@/components/work"
 
 export default function HomePage() {
   return (
     <>
-      <section className="container mx-auto grid h-screen min-h-screen items-center gap-6 p-0">
-        <div className="flex flex-col items-start gap-2 px-6">
-          <p className="max-w-[700px] py-2 text-lg text-emerald-400 sm:text-xl">
-            Hi👋, my name is
+      {/* ===== HERO SECTION ===== */}
+      <section className="container relative mx-auto flex h-[calc(100vh-4rem)] items-center p-0">
+        <div className="flex flex-col items-start gap-4 px-6">
+          {/* Greeting */}
+          <p className="font-mono text-sm tracking-widest text-cyber-cyan sm:text-base">
+            &lt;hello world /&gt;<span className="cursor">|</span>
           </p>
-          <h1 className="lg:text-10xl py-2 text-5xl font-extrabold leading-tight tracking-tighter sm:text-5xl md:text-7xl">
-            Jasif Shameem<span className="text-emerald-400">.</span>
+
+          {/* Name */}
+          <h1 className="font-heading text-5xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+            <span className="text-cyber-text">Jasif</span>{" "}
+            <span className="gradient-text">Shameem</span>
+            <span className="gradient-text">.</span>
           </h1>
-          <h2 className="py-2 text-4xl font-extrabold leading-tight tracking-tighter text-slate-700 dark:text-slate-400 sm:text-4xl md:text-5xl lg:text-6xl">
-            Crafting digital experiences with code
-            <span className="text-emerald-600">.</span>
+
+          {/* Tagline */}
+          <h2 className="font-heading text-2xl font-bold leading-tight tracking-tight text-cyber-muted sm:text-3xl md:text-4xl lg:text-5xl">
+            Backend Tech Lead &{" "}
+            <span className="gradient-text-cyan">Full-Stack Engineer</span>
           </h2>
-          <p className="max-w-[540px] py-2 text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
-            Building stunning and responsive websites and mobile apps with expertise in both
-            front-end and back-end development. Let&apos;s bring your vision to
-            life!
+
+          {/* Description */}
+          <p className="max-w-[540px] text-base leading-relaxed text-cyber-dim sm:text-lg">
+            Building high-performance backend systems and crafting seamless
+            digital experiences with modern web technologies.
           </p>
+
+          {/* CTA */}
           <Link
             href={siteConfig.links.linkedIn}
             target="_blank"
             rel="noreferrer"
-            className={buttonVariants({
-              size: "lg",
-              className: "my-2",
-              variant: "outline",
-            })}
+            className="cyber-button my-4 inline-flex items-center gap-2"
           >
-            Let&apos;s chat
+            Let&apos;s connect
+            <svg
+              className="size-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
           </Link>
         </div>
+
+        <ScrollIndicator />
+
+        {/* Decorative geometric shape */}
+        <div className="pointer-events-none absolute right-8 top-1/4 hidden lg:block">
+          <div className="relative size-64">
+            <div
+              className="animate-spin-slow absolute inset-0 rounded-full border border-cyber-cyan/10"
+              style={{ animationDuration: "30s" }}
+            />
+            <div
+              className="animate-spin-slow absolute inset-8 rounded-full border border-cyber-violet/10"
+              style={{ animationDuration: "20s", animationDirection: "reverse" }}
+            />
+            <div
+              className="animate-spin-slow absolute inset-16 rounded-full border border-cyber-pink/10"
+              style={{ animationDuration: "25s" }}
+            />
+          </div>
+        </div>
       </section>
+
       <AboutMe />
       <Skills />
       <Work />
