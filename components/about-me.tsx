@@ -9,7 +9,7 @@ export default function AboutMe() {
           <div className="flex justify-center lg:justify-start">
             <div className="relative">
               {/* Glowing ring */}
-              <div className="absolute -inset-3 rounded-2xl bg-gradient-to-br from-cyber-cyan/20 via-cyber-violet/10 to-transparent opacity-60 blur-lg animate-glow-pulse" />
+              <div className="absolute -inset-3 animate-glow-pulse rounded-2xl bg-gradient-to-br from-cyber-cyan/20 via-cyber-violet/10 to-transparent opacity-60 blur-lg" />
               <div className="relative overflow-hidden rounded-2xl border border-white/10">
                 <Image
                   className="size-72 object-cover transition-all duration-700 hover:scale-105 sm:size-80"
@@ -41,7 +41,7 @@ export default function AboutMe() {
               <p>
                 A passionate and experienced{" "}
                 <span className="font-semibold text-cyber-cyan">
-                  Backend Tech Lead and Full-Stack Developer
+                  Backend Tech Lead and Full-Stack Engineer
                 </span>{" "}
                 based in Kerala, India. For over seven years, I&apos;ve been
                 immersed in the world of software development, leading the
@@ -50,7 +50,7 @@ export default function AboutMe() {
 
               <p>
                 My expertise lies in the Node.js ecosystem, particularly with
-                TypeScript and NestJS, complemented by a strong command of
+                TypeScript and ExpressJS, complemented by a strong command of
                 technologies like RabbitMQ, Redis, and PostgreSQL to ensure
                 optimal performance and reliability.
               </p>

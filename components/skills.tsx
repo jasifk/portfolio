@@ -8,7 +8,7 @@ export default function Skills() {
     {
       title: "Frameworks & Libraries",
       accent: "from-cyber-violet/20",
-      items: ["Node.js", "NestJS", "ExpressJS", "ReactJS", "NextJS", "Angular", "React Native"],
+      items: ["Node.js", "ExpressJS", "ReactJS", "NextJS", "Angular", "React Native"],
     },
     {
       title: "Databases & Caching",

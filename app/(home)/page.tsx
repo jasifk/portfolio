@@ -27,7 +27,7 @@ export default function HomePage() {
           {/* Tagline */}
           <h2 className="font-heading text-2xl font-bold leading-tight tracking-tight text-cyber-muted sm:text-3xl md:text-4xl lg:text-5xl">
             Backend Tech Lead &{" "}
-            <span className="gradient-text-cyan">Full-Stack Developer</span>
+            <span className="gradient-text-cyan">Full-Stack Engineer</span>
           </h2>
 
           {/* Description */}
@@ -84,15 +84,15 @@ export default function HomePage() {
         <div className="pointer-events-none absolute right-8 top-1/4 hidden lg:block">
           <div className="relative size-64">
             <div
-              className="absolute inset-0 animate-spin-slow rounded-full border border-cyber-cyan/10"
+              className="animate-spin-slow absolute inset-0 rounded-full border border-cyber-cyan/10"
               style={{ animationDuration: "30s" }}
             />
             <div
-              className="absolute inset-8 animate-spin-slow rounded-full border border-cyber-violet/10"
+              className="animate-spin-slow absolute inset-8 rounded-full border border-cyber-violet/10"
               style={{ animationDuration: "20s", animationDirection: "reverse" }}
             />
             <div
-              className="absolute inset-16 animate-spin-slow rounded-full border border-cyber-pink/10"
+              className="animate-spin-slow absolute inset-16 rounded-full border border-cyber-pink/10"
               style={{ animationDuration: "25s" }}
             />
           </div>

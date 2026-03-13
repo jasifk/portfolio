@@ -38,7 +38,7 @@ export function SiteHeader() {
         hidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
-      <div className="container flex gap-6 h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between gap-6">
         <MainNav items={homeConfig.mainNav} />
         {/* Social icons — hidden on mobile, shown in sidebar instead */}
         <div className="hidden flex-1 items-center justify-end space-x-4 md:flex">
