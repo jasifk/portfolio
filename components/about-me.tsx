@@ -1,6 +1,17 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 
 export default function AboutMe() {
+  const [scanning, setScanning] = useState(false)
+
+  const handleScan = () => {
+    if (scanning) return
+    setScanning(true)
+    setTimeout(() => setScanning(false), 2100)
+  }
+
   return (
     <section id="about" className="px-6 py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl">
@@ -10,14 +21,35 @@ export default function AboutMe() {
             <div className="relative">
               {/* Glowing ring */}
               <div className="absolute -inset-3 animate-glow-pulse rounded-2xl bg-gradient-to-br from-cyber-cyan/20 via-cyber-violet/10 to-transparent opacity-60 blur-lg" />
-              <div className="relative overflow-hidden rounded-2xl border border-white/10">
+              <div
+                onClick={handleScan}
+                className={`relative overflow-hidden rounded-2xl border border-white/10 ${scanning ? "cursor-default" : "cursor-crosshair"}`}
+              >
                 <Image
-                  className="size-72 object-cover transition-all duration-700 hover:scale-105 sm:size-80"
+                  className={`size-72 object-cover transition-all duration-700 hover:scale-105 sm:size-80 ${scanning ? "brightness-90" : ""}`}
                   src="/profile-pic.jpg"
                   alt="Profile picture"
                   width={320}
                   height={320}
                 />
+
+                {/* Cyan tint overlay during scan */}
+                <div
+                  className={`pointer-events-none absolute inset-0 bg-cyber-cyan/5 transition-opacity duration-200 ${scanning ? "opacity-100" : "opacity-0"}`}
+                />
+
+                {/* Scan line */}
+                {scanning && (
+                  <div
+                    className="pointer-events-none absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyber-cyan to-transparent"
+                    style={{
+                      animation: "scan-line 2s linear forwards",
+                      boxShadow: "0 0 10px 2px rgba(0,240,255,0.6)",
+                      top: "-2px",
+                    }}
+                  />
+                )}
+
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-cyber-bg/50 to-transparent opacity-0 transition-opacity duration-500 hover:opacity-100" />
               </div>

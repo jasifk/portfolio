@@ -196,9 +196,28 @@ html.has-menu-open {
   .cursor {
     animation: blink 1s infinite;
   }
+
+  /* ===== FOCUS VISIBLE ===== */
+  :focus-visible {
+    outline: 2px solid var(--cyber-cyan);
+    outline-offset: 3px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.15), 0 0 16px rgba(0, 240, 255, 0.1);
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 /* ===== ANIMATIONS ===== */
+@keyframes scan-line {
+  0%   { top: -2px;             animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  33%  { top: calc(100% + 2px); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  66%  { top: -2px;             animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  100% { top: calc(100% + 2px); }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(2deg); }
@@ -297,4 +316,21 @@ html.has-menu-open {
 }
 .scroll-animate.is-visible {
   opacity: 1;
+}
+
+/* ===== PREFERS-REDUCED-MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep scroll-animate elements visible since their reveal animation won't run */
+  .scroll-animate {
+    opacity: 1 !important;
+  }
 }

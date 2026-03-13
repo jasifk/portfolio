@@ -3,6 +3,7 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import AboutMe from "@/components/about-me"
 import Contact from "@/components/contact"
+import ScrollIndicator from "@/components/scroll-indicator"
 import Skills from "@/components/skills"
 import Work from "@/components/work"
 
@@ -60,25 +61,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute inset-x-0 bottom-6 flex flex-col items-center gap-2">
-          <span className="text-xs tracking-widest text-cyber-dim">SCROLL</span>
-          <div className="animate-scroll-hint">
-            <svg
-              className="size-5 text-cyber-cyan opacity-60"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </div>
-        </div>
+        <ScrollIndicator />
 
         {/* Decorative geometric shape */}
         <div className="pointer-events-none absolute right-8 top-1/4 hidden lg:block">

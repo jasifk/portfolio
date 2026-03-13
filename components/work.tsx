@@ -8,7 +8,7 @@ export default function Work() {
       subtitle: "Tender Management & RFP Software Platform",
       image: "/winmore-app.png",
       imageAlt: "Winmore Platform - Tender management",
-      link: "https://winmore.app",
+      link: "https://winmore.io",
       challenge:
         "Winmore required a highly scalable and maintainable platform for 3PLs, forwarders, and carriers to manage pricing, tenders, and RFP processes with complex data processing requirements.",
       role: "As Tech Lead, I architected a microservices platform using Express.js APIs for core services (users, spaces, records) and AWS Lambda for long-running processes. Currently leading development of RateAI, a sophisticated pricing feature for bid management.",
@@ -83,7 +83,9 @@ export default function Work() {
                     width={600}
                     height={400}
                     className="w-full rounded-xl object-cover object-top transition-all duration-700 group-hover:scale-[1.03]"
-                    priority
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVQI12NgYmb+z8BQDwIMDAwMDIwM/xkYGBgYGP4zMPxnYPjPwJDAwJDAwAAA/w4GBRxTVmkAAAAASUVORK5CYII="
                   />
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-cyber-bg/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

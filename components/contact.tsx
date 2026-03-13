@@ -1,17 +1,64 @@
 "use client"
 
 import { useState } from "react"
-import { AtSign, Check, Copy, Phone, Send } from "lucide-react"
+import { AtSign, Check, Copy, Loader2, Phone, Send } from "lucide-react"
+
+import { sendContactEmail } from "@/app/actions/contact"
+import { toast } from "@/hooks/use-toast"
+
+const EMPTY_FORM = {
+  name: "",
+  email: "",
+  company: "",
+  budget: "",
+  message: "",
+}
 
 export default function Contact() {
-  const [messageLength, setMessageLength] = useState(0)
+  const [form, setForm] = useState(EMPTY_FORM)
   const [copied, setCopied] = useState<"phone" | "email" | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
   const handleCopy = (type: "phone" | "email", value: string) => {
     navigator.clipboard.writeText(value).then(() => {
       setCopied(type)
       setTimeout(() => setCopied(null), 2000)
     })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const result = await sendContactEmail({
+      name: form.name,
+      email: form.email,
+      company: form.company || undefined,
+      budget: form.budget || undefined,
+      message: form.message,
+    })
+
+    setIsSubmitting(false)
+
+    if (result.success) {
+      setForm(EMPTY_FORM)
+      toast({
+        title: "Message sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      })
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+        description: result.error,
+      })
+    }
   }
 
   return (
@@ -107,7 +154,7 @@ export default function Contact() {
             <h3 className="mb-6 text-xl font-semibold text-cyber-text">
               Send a Message
             </h3>
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSubmit}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <label
@@ -118,8 +165,11 @@ export default function Contact() {
                   </label>
                   <input
                     id="name"
+                    name="name"
                     placeholder="Enter name"
                     required
+                    value={form.name}
+                    onChange={handleChange}
                     className="glass-input w-full rounded-lg px-4 py-2.5 text-sm"
                   />
                 </div>
@@ -132,9 +182,12 @@ export default function Contact() {
                   </label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="Enter email"
                     required
+                    value={form.email}
+                    onChange={handleChange}
                     className="glass-input w-full rounded-lg px-4 py-2.5 text-sm"
                   />
                 </div>
@@ -150,7 +203,10 @@ export default function Contact() {
                   </label>
                   <input
                     id="company"
+                    name="company"
                     placeholder="Company name"
+                    value={form.company}
+                    onChange={handleChange}
                     className="glass-input w-full rounded-lg px-4 py-2.5 text-sm"
                   />
                 </div>
@@ -163,7 +219,10 @@ export default function Contact() {
                   </label>
                   <input
                     id="budget"
+                    name="budget"
                     placeholder="In USD"
+                    value={form.budget}
+                    onChange={handleChange}
                     className="glass-input w-full rounded-lg px-4 py-2.5 text-sm"
                   />
                 </div>
@@ -179,23 +238,35 @@ export default function Contact() {
                 <div className="relative">
                   <textarea
                     id="message"
+                    name="message"
                     placeholder="Type your message here..."
                     className="glass-input min-h-[120px] w-full resize-none rounded-lg px-4 py-2.5 text-sm"
                     maxLength={250}
-                    onChange={(e) => setMessageLength(e.target.value.length)}
+                    value={form.message}
+                    onChange={handleChange}
                   />
                   <span className="absolute bottom-2 right-3 text-xs text-cyber-dim">
-                    {messageLength}/250
+                    {form.message.length}/250
                   </span>
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="cyber-button inline-flex items-center gap-2"
+                disabled={isSubmitting}
+                className="cyber-button inline-flex items-center gap-2 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                <Send className="size-4" />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="size-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="size-4" />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>

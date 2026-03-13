@@ -64,7 +64,7 @@ export const metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: absoluteUrl("/og.jpg"),
+        url: absoluteUrl("/api/og"),
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -75,7 +75,7 @@ export const metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.ogDescription,
-    images: [`${siteConfig.url}/og.jpg`],
+    images: [`${siteConfig.url}/api/og`],
     creator: "@jasifk",
   },
   icons: {
