@@ -1,4 +1,5 @@
 import { Inter as FontSans } from "next/font/google"
+import { Space_Grotesk as FontHeading } from "next/font/google"
 
 import "@/styles/globals.css"
 import { siteConfig } from "@/config/site"
@@ -10,6 +11,12 @@ import { Providers } from "./providers"
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+})
+
+const fontHeading = FontHeading({
+  subsets: ["latin"],
+  variable: "--font-heading",
   display: "swap",
 })
 
@@ -48,10 +55,6 @@ export const metadata = {
   ],
   referrer: "origin-when-cross-origin",
   creator: "jasif",
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "white" },
-  //   { media: "(prefers-color-scheme: dark)", color: "black" },
-  // ],
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -80,9 +83,6 @@ export const metadata = {
     shortcut: { url: "/favicon.svg", type: "image/svg" },
     apple: "/apple-touch-icon.png",
   },
-  // temporarily removed as cors error
-  // TODO: check with nextjs
-  // manifest: `${siteConfig.url}/site.webmanifest`,
   robots: {
     index: false,
     follow: true,
@@ -103,11 +103,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       className={cn(
-        "bg-white font-sans text-slate-900 antialiased",
-        fontSans.variable
+        "font-sans antialiased",
+        fontSans.variable,
+        fontHeading.variable
       )}
     >
-      <body className="bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
+      <body className="bg-cyber-bg font-sans text-cyber-text antialiased">
         <Providers>
           {children}
           <Analytics />

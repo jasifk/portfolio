@@ -1,131 +1,174 @@
 "use client"
 
 import { useState } from "react"
-import { AtSign, Phone } from "lucide-react"
-
-import { Button } from "./app-button"
-import { Input } from "./ui/input"
-import { Textarea } from "./ui/textarea"
+import { AtSign, Phone, Send } from "lucide-react"
 
 export default function Contact() {
   const [messageLength, setMessageLength] = useState(0)
   return (
-    <section id="contact" className="container h-auto pb-40">
-      <div className="mx-auto flex flex-wrap items-start pb-6 pt-4">
-        <h2 className="my-8 w-full text-left text-3xl font-bold leading-tight text-slate-700 dark:text-slate-400">
-          Let&apos;s build an awesome project together
-          <span className="text-emerald-400">!</span>
-        </h2>
-        <div className="w-full p-0 md:w-1/2">
-          <div className="mx-auto">
-            <div className="space-y-8">
-              <h3 className="mb-4 text-2xl font-semibold">Contact Me</h3>
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Phone className="size-5" />
-                    <span className="font-medium">Call me</span>
-                  </div>
-                  <div className="space-y-1 pl-7">
-                    <p className="text-muted-foreground text-sm">
-                      +91 9567909210
-                    </p>
-                  </div>
+    <section id="contact" className="px-6 py-16 sm:py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 sm:mb-14 lg:mb-16">
+          <p className="mb-2 font-mono text-sm tracking-widest text-cyber-cyan">
+            // get in touch
+          </p>
+          <h2 className="section-heading text-cyber-text">
+            Let&apos;s <span className="gradient-text">Connect</span>
+            <span className="gradient-text">.</span>
+          </h2>
+          <p className="section-subheading mt-3">
+            Have a project in mind? Let&apos;s build something awesome together.
+          </p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+          {/* Contact Info */}
+          <div className="space-y-8">
+            <div className="space-y-6">
+              <div className="glass-card flex items-start gap-4 p-5">
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-cyber-cyan/10">
+                  <Phone className="size-5 text-cyber-cyan" />
                 </div>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <AtSign className="size-5" />
-                    <span className="font-medium">Mail me</span>
-                  </div>
-                  <div className="space-y-1 pl-7">
-                    <p className="text-muted-foreground text-sm">
-                      jasifkolangath@gmail.com
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="font-semibold text-cyber-text">Call Me</h3>
+                  <p className="mt-1 text-sm text-cyber-muted">
+                    +91 9567909210
+                  </p>
+                </div>
+              </div>
+
+              <div className="glass-card flex items-start gap-4 p-5">
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-cyber-violet/10">
+                  <AtSign className="size-5 text-cyber-violet" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-cyber-text">Mail Me</h3>
+                  <p className="mt-1 text-sm text-cyber-muted">
+                    jasifkolangath@gmail.com
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="w-full p-0 md:w-1/2">
-          <div className="mx-auto">
-            <div className="space-y-8">
-              <h2 className="mt-8 text-2xl font-semibold md:mt-0">
-                Get in touch.
-              </h2>
-              <form className="space-y-6">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">
-                      Your name <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      id="name"
-                      placeholder="Enter name"
-                      required
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">
-                      Your email <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter email"
-                      required
-                      className="w-full"
-                    />
-                  </div>
-                </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label htmlFor="company" className="text-sm font-medium">
-                      Your company
-                    </label>
-                    <Input
-                      id="company"
-                      placeholder="Company name"
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="budget" className="text-sm font-medium">
-                      Budget Range
-                    </label>
-                    <Input
-                      id="budget"
-                      placeholder="In USD"
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Message
-                  </label>
-                  <div className="relative">
-                    <Textarea
-                      id="message"
-                      placeholder="Type here..."
-                      className="min-h-[120px] resize-none"
-                      maxLength={250}
-                      onChange={(e) => setMessageLength(e.target.value.length)}
-                    />
-                    <span className="text-muted-foreground absolute bottom-2 right-2 text-xs">
-                      {messageLength}/250
-                    </span>
-                  </div>
-                </div>
-
-                <Button type="submit" className="w-24" variant="outline">
-                  Send
-                </Button>
-              </form>
+            {/* Decorative element */}
+            <div className="hidden lg:block">
+              <div className="glass-card p-6">
+                <p className="font-mono text-sm leading-relaxed text-cyber-dim">
+                  <span className="text-cyber-cyan">const</span>{" "}
+                  <span className="text-cyber-violet">developer</span>{" "}
+                  <span className="text-cyber-text">=</span> {"{"}
+                  <br />
+                  &nbsp;&nbsp;<span className="text-cyber-cyan">name</span>:{" "}
+                  <span className="text-green-400">&quot;Jasif Shameem&quot;</span>,
+                  <br />
+                  &nbsp;&nbsp;<span className="text-cyber-cyan">role</span>:{" "}
+                  <span className="text-green-400">&quot;Tech Lead&quot;</span>,
+                  <br />
+                  &nbsp;&nbsp;<span className="text-cyber-cyan">available</span>:{" "}
+                  <span className="text-cyber-cyan">true</span>,
+                  <br />
+                  {"}"};
+                </p>
+              </div>
             </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="glass-card p-6 sm:p-8">
+            <h3 className="mb-6 text-xl font-semibold text-cyber-text">
+              Send a Message
+            </h3>
+            <form className="space-y-5">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-medium text-cyber-muted"
+                  >
+                    Your name <span className="text-cyber-pink">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    placeholder="Enter name"
+                    required
+                    className="glass-input w-full rounded-lg px-4 py-2.5 text-sm"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium text-cyber-muted"
+                  >
+                    Your email <span className="text-cyber-pink">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="Enter email"
+                    required
+                    className="glass-input w-full rounded-lg px-4 py-2.5 text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="company"
+                    className="text-sm font-medium text-cyber-muted"
+                  >
+                    Your company
+                  </label>
+                  <input
+                    id="company"
+                    placeholder="Company name"
+                    className="glass-input w-full rounded-lg px-4 py-2.5 text-sm"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label
+                    htmlFor="budget"
+                    className="text-sm font-medium text-cyber-muted"
+                  >
+                    Budget Range
+                  </label>
+                  <input
+                    id="budget"
+                    placeholder="In USD"
+                    className="glass-input w-full rounded-lg px-4 py-2.5 text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="message"
+                  className="text-sm font-medium text-cyber-muted"
+                >
+                  Message
+                </label>
+                <div className="relative">
+                  <textarea
+                    id="message"
+                    placeholder="Type your message here..."
+                    className="glass-input min-h-[120px] w-full resize-none rounded-lg px-4 py-2.5 text-sm"
+                    maxLength={250}
+                    onChange={(e) => setMessageLength(e.target.value.length)}
+                  />
+                  <span className="absolute bottom-2 right-3 text-xs text-cyber-dim">
+                    {messageLength}/250
+                  </span>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="cyber-button inline-flex items-center gap-2"
+              >
+                <Send className="size-4" />
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </div>

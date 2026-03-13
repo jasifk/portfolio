@@ -1,194 +1,77 @@
 export default function Skills() {
+  const skillCategories = [
+    {
+      title: "Programming Languages",
+      accent: "from-cyber-cyan/20",
+      items: ["JavaScript (ES6+)", "TypeScript", "SQL", "HTML5 & CSS3", "Python (Basic)"],
+    },
+    {
+      title: "Frameworks & Libraries",
+      accent: "from-cyber-violet/20",
+      items: ["Node.js", "NestJS", "ExpressJS", "ReactJS", "NextJS", "Angular", "React Native"],
+    },
+    {
+      title: "Databases & Caching",
+      accent: "from-cyber-pink/20",
+      items: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
+    },
+    {
+      title: "Cloud & DevOps",
+      accent: "from-cyber-cyan/20",
+      items: ["AWS (EC2, S3, Lambda, RDS)", "Docker", "Kubernetes (Basic)", "CI/CD & CircleCI", "Git"],
+    },
+    {
+      title: "Message Brokers & API",
+      accent: "from-cyber-violet/20",
+      items: ["RabbitMQ", "RESTful APIs", "JWT & OAuth"],
+    },
+    {
+      title: "Methodologies",
+      accent: "from-cyber-pink/20",
+      items: ["Agile (Scrum)", "Microservice Architecture", "Test-Driven Development"],
+    },
+  ]
+
   return (
-    <section
-      id="skills"
-      className="py-12 sm:py-16 lg:py-20 px-4 bg-portfolio-card/30"
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="my-2 w-full text-left text-3xl font-bold leading-tight text-slate-700 dark:text-slate-400">
-            Skills & Expertise<span className="text-emerald-400">.</span>
+    <section id="skills" className="px-6 py-16 sm:py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 sm:mb-14 lg:mb-16">
+          <p className="mb-2 font-mono text-sm tracking-widest text-cyber-cyan">
+            // skills & expertise
+          </p>
+          <h2 className="section-heading text-cyber-text">
+            My <span className="gradient-text">Tech Stack</span>
+            <span className="gradient-text">.</span>
           </h2>
-          <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-400 max-w-3xl">
+          <p className="section-subheading mt-3">
             7+ years of hands-on experience with modern technologies and
             frameworks
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {/* Programming Languages */}
-          <div className="bg-portfolio-card p-4 sm:p-6 rounded-xl">
-            <h3 className="text-lg sm:text-xl font-semibold text-portfolio-primary mb-3 sm:mb-4">
-              Programming Languages
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">
-                  JavaScript (ES6+)
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">TypeScript</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">SQL</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">HTML5 & CSS3</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">Python (Basic)</span>
-              </div>
-            </div>
-          </div>
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-6">
+          {skillCategories.map((category, categoryIndex) => (
+            <div key={categoryIndex} className="glass-card group relative overflow-hidden p-5 sm:p-6">
+              {/* Top accent gradient line */}
+              <div
+                className={`absolute left-0 right-0 top-0 h-px bg-gradient-to-r ${category.accent} to-transparent`}
+              />
 
-          {/* Frameworks & Libraries */}
-          <div className="bg-portfolio-card p-4 sm:p-6 rounded-xl">
-            <h3 className="text-lg sm:text-xl font-semibold text-portfolio-primary mb-3 sm:mb-4">
-              Frameworks & Libraries
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">Node.js</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">NestJS</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">ExpressJS</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">ReactJS</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">NextJS</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">Angular</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">React Native</span>
+              <h3 className="mb-4 text-lg font-semibold text-cyber-text">
+                {category.title}
+              </h3>
+              <div className="space-y-2.5">
+                {category.items.map((item, itemIndex) => (
+                  <div key={itemIndex} className="flex items-center gap-3">
+                    <div className="h-1.5 w-1.5 rounded-full bg-cyber-cyan shadow-[0_0_6px_rgba(0,240,255,0.5)]" />
+                    <span className="text-sm text-cyber-muted transition-colors duration-300 group-hover:text-cyber-text">
+                      {item}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-
-          {/* Databases & Caching */}
-          <div className="bg-portfolio-card p-4 sm:p-6 rounded-xl">
-            <h3 className="text-lg sm:text-xl font-semibold text-portfolio-primary mb-3 sm:mb-4">
-              Databases & Caching
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">PostgreSQL</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">MySQL</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">MongoDB</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">Redis</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Cloud & DevOps */}
-          <div className="bg-portfolio-card p-4 sm:p-6 rounded-xl">
-            <h3 className="text-lg sm:text-xl font-semibold text-portfolio-primary mb-3 sm:mb-4">
-              Cloud & DevOps
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">
-                  AWS (EC2, S3, Lambda, RDS)
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">Docker</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">
-                  Kubernetes (Basic)
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">
-                  CI/CD & CircleCI
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">Git</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Message Brokers & API */}
-          <div className="bg-portfolio-card p-4 sm:p-6 rounded-xl">
-            <h3 className="text-lg sm:text-xl font-semibold text-portfolio-primary mb-3 sm:mb-4">
-              Message Brokers & API
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">RabbitMQ</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">RESTful APIs</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">JWT & OAuth</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Methodologies */}
-          <div className="bg-portfolio-card p-4 sm:p-6 rounded-xl">
-            <h3 className="text-lg sm:text-xl font-semibold text-portfolio-primary mb-3 sm:mb-4">
-              Methodologies
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">Agile (Scrum)</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">
-                  Microservice Architecture
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-portfolio-accent rounded-full"></div>
-                <span className="text-portfolio-secondary">
-                  Test-Driven Development
-                </span>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
