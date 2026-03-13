@@ -54,7 +54,7 @@ export async function GET() {
             display: "flex",
           }}
         >
-          // portfolio
+          {"// portfolio"}
         </div>
 
         {/* Name */}
