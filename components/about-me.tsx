@@ -75,7 +75,7 @@ export default function AboutMe() {
                 <p className="text-xs text-cyber-dim">Projects Delivered</p>
               </div>
               <div className="glass-card px-5 py-3">
-                <p className="gradient-text text-2xl font-bold">5+</p>
+                <p className="gradient-text text-2xl font-bold">3+</p>
                 <p className="text-xs text-cyber-dim">Teams Led</p>
               </div>
             </div>

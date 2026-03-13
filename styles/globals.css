@@ -192,6 +192,10 @@ html.has-menu-open {
   .cyber-button:hover::before {
     opacity: 1;
   }
+
+  .cursor {
+    animation: blink 1s infinite;
+  }
 }
 
 /* ===== ANIMATIONS ===== */
@@ -247,6 +251,11 @@ html.has-menu-open {
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 @keyframes spin-slow {

@@ -14,7 +14,7 @@ export default function HomePage() {
         <div className="flex flex-col items-start gap-4 px-6">
           {/* Greeting */}
           <p className="font-mono text-sm tracking-widest text-cyber-cyan sm:text-base">
-            &lt;hello world /&gt;
+            &lt;hello world /&gt;<span className="cursor">|</span>
           </p>
 
           {/* Name */}
