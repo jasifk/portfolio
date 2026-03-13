@@ -7,8 +7,8 @@ import { MainNav } from "@/components/main-nav"
 
 export function SiteHeader() {
   return (
-    <header className="glass-nav sticky top-0 z-40 w-full transition-all duration-500">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="glass-nav sticky top-0 z-50 w-full transition-all duration-500 [.has-menu-open_&]:fixed [.has-menu-open_&]:z-[200] [.has-menu-open_&]:duration-0">
+      <div className="container flex gap-6 h-16 items-center justify-between">
         <MainNav items={homeConfig.mainNav} />
         {/* Social icons — hidden on mobile, shown in sidebar instead */}
         <div className="hidden flex-1 items-center justify-end space-x-4 md:flex">

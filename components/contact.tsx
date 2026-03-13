@@ -10,7 +10,7 @@ export default function Contact() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 sm:mb-14 lg:mb-16">
           <p className="mb-2 font-mono text-sm tracking-widest text-cyber-cyan">
-            // get in touch
+            {"// get in touch"}
           </p>
           <h2 className="section-heading text-cyber-text">
             Let&apos;s <span className="gradient-text">Connect</span>

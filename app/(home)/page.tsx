@@ -82,7 +82,7 @@ export default function HomePage() {
 
         {/* Decorative geometric shape */}
         <div className="pointer-events-none absolute right-8 top-1/4 hidden lg:block">
-          <div className="relative h-64 w-64">
+          <div className="relative size-64">
             <div
               className="absolute inset-0 animate-spin-slow rounded-full border border-cyber-cyan/10"
               style={{ animationDuration: "30s" }}

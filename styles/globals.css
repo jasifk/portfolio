@@ -25,6 +25,16 @@ html {
   scrollbar-color: rgba(0, 240, 255, 0.2) transparent;
 }
 
+html.has-menu-open,
+html.has-menu-open body {
+  overflow: hidden !important;
+}
+
+/* Ensure header stays sharp and above the portal when menu is open */
+html.has-menu-open header {
+  z-index: 150 !important;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

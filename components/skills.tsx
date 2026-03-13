@@ -37,7 +37,7 @@ export default function Skills() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 sm:mb-14 lg:mb-16">
           <p className="mb-2 font-mono text-sm tracking-widest text-cyber-cyan">
-            // skills & expertise
+            {"// skills & expertise"}
           </p>
           <h2 className="section-heading text-cyber-text">
             My <span className="gradient-text">Tech Stack</span>
@@ -54,7 +54,7 @@ export default function Skills() {
             <div key={categoryIndex} className="glass-card group relative overflow-hidden p-5 sm:p-6">
               {/* Top accent gradient line */}
               <div
-                className={`absolute left-0 right-0 top-0 h-px bg-gradient-to-r ${category.accent} to-transparent`}
+                className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${category.accent} to-transparent`}
               />
 
               <h3 className="mb-4 text-lg font-semibold text-cyber-text">
@@ -63,7 +63,7 @@ export default function Skills() {
               <div className="space-y-2.5">
                 {category.items.map((item, itemIndex) => (
                   <div key={itemIndex} className="flex items-center gap-3">
-                    <div className="h-1.5 w-1.5 rounded-full bg-cyber-cyan shadow-[0_0_6px_rgba(0,240,255,0.5)]" />
+                    <div className="size-1.5 rounded-full bg-cyber-cyan shadow-[0_0_6px_rgba(0,240,255,0.5)]" />
                     <span className="text-sm text-cyber-muted transition-colors duration-300 group-hover:text-cyber-text">
                       {item}
                     </span>

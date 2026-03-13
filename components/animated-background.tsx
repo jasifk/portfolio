@@ -15,7 +15,7 @@ export function AnimatedBackground() {
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       {/* Primary gradient orb - top right — large slow drift */}
       <div
-        className="absolute h-[600px] w-[600px] rounded-full"
+        className="absolute size-[600px] rounded-full"
         style={{
           top: "-10%",
           right: "-5%",
@@ -28,7 +28,7 @@ export function AnimatedBackground() {
 
       {/* Secondary gradient orb - bottom left — medium drift */}
       <div
-        className="absolute h-[700px] w-[700px] rounded-full"
+        className="absolute size-[700px] rounded-full"
         style={{
           bottom: "-15%",
           left: "-10%",
@@ -41,7 +41,7 @@ export function AnimatedBackground() {
 
       {/* Accent orb - center — slow pulse + drift */}
       <div
-        className="absolute h-[400px] w-[400px] rounded-full"
+        className="absolute size-[400px] rounded-full"
         style={{
           top: "30%",
           left: "40%",
@@ -54,7 +54,7 @@ export function AnimatedBackground() {
 
       {/* Extra small orb for depth — fast movement */}
       <div
-        className="absolute h-[250px] w-[250px] rounded-full"
+        className="absolute size-[250px] rounded-full"
         style={{
           top: "60%",
           right: "20%",

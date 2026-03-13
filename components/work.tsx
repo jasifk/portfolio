@@ -52,7 +52,7 @@ export default function Work() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 sm:mb-14 lg:mb-16">
           <p className="mb-2 font-mono text-sm tracking-widest text-cyber-cyan">
-            // professional experience
+            {"// professional experience"}
           </p>
           <h2 className="section-heading text-cyber-text">
             Featured <span className="gradient-text">Projects</span>

@@ -12,7 +12,7 @@ export default function AboutMe() {
               <div className="absolute -inset-3 rounded-2xl bg-gradient-to-br from-cyber-cyan/20 via-cyber-violet/10 to-transparent opacity-60 blur-lg animate-glow-pulse" />
               <div className="relative overflow-hidden rounded-2xl border border-white/10">
                 <Image
-                  className="h-72 w-72 object-cover transition-all duration-700 hover:scale-105 sm:h-80 sm:w-80"
+                  className="size-72 object-cover transition-all duration-700 hover:scale-105 sm:size-80"
                   src="/profile-pic.jpg"
                   alt="Profile picture"
                   width={320}
@@ -28,7 +28,7 @@ export default function AboutMe() {
           <div className="space-y-6">
             <div>
               <p className="mb-2 font-mono text-sm tracking-widest text-cyber-cyan">
-                // about me
+                {"// about me"}
               </p>
               <h2 className="section-heading">
                 <span className="text-cyber-text">Hello, I&apos;m </span>
