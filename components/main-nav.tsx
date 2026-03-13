@@ -16,11 +16,41 @@ interface MainNavProps {
 export function MainNav({ items }: MainNavProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [activeSection, setActiveSection] = useState<string>("")
   const sidebarRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = ["about", "skills", "work", "contact"]
+    const intersecting = new Set<string>()
+    const observers: IntersectionObserver[] = []
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            intersecting.add(id)
+          } else {
+            intersecting.delete(id)
+          }
+          // Pick the first section in order that is currently intersecting
+          const next = sectionIds.find((s) => intersecting.has(s)) ?? ""
+          setActiveSection(next)
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
   }, [])
 
   // Close on Escape key
@@ -99,13 +129,22 @@ export function MainNav({ items }: MainNavProps) {
                   key={index}
                   href={item.href}
                   className={cn(
-                    "group relative flex items-center text-sm font-medium text-cyber-muted transition-colors duration-300 hover:text-cyber-text",
-                    item.disabled && "cursor-not-allowed opacity-80"
+                    "group relative flex items-center text-sm font-medium transition-colors duration-300 hover:text-cyber-text",
+                    item.disabled && "cursor-not-allowed opacity-80",
+                    activeSection === item.href?.replace("#", "")
+                      ? "text-cyber-text"
+                      : "text-cyber-muted"
                   )}
                 >
                   {item.title}
-                  <span className="gradient-text ml-0.5 font-bold">.</span>
-                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-cyber-cyan to-cyber-violet transition-all duration-300 group-hover:w-full" />
+                  <span className={cn(
+                    "ml-0.5 font-bold transition-colors duration-300",
+                    activeSection === item.href?.replace("#", "") ? "gradient-text" : "group-hover:gradient-text text-cyber-muted"
+                  )}>.</span>
+                  <span className={cn(
+                    "absolute -bottom-1 left-0 h-px bg-gradient-to-r from-cyber-cyan to-cyber-violet transition-all duration-300",
+                    activeSection === item.href?.replace("#", "") ? "w-full" : "w-0 group-hover:w-full"
+                  )} />
                 </Link>
               )
           )}
@@ -145,7 +184,7 @@ export function MainNav({ items }: MainNavProps) {
         createPortal(
           <div
             className={cn(
-              "fixed inset-x-0 bottom-0 top-16 z-[100] transition-visibility md:hidden",
+              "transition-visibility fixed inset-x-0 bottom-0 top-16 z-[100] md:hidden",
               isOpen ? "visible" : "invisible"
             )}
             aria-hidden={!isOpen}
@@ -181,11 +220,17 @@ export function MainNav({ items }: MainNavProps) {
                         onClick={closeSidebar}
                         tabIndex={isOpen ? 0 : -1}
                         className={cn(
-                          "group flex items-center py-3 text-2xl font-semibold text-cyber-muted transition-all duration-300 hover:translate-x-2 hover:text-cyber-text",
-                          item.disabled && "cursor-not-allowed opacity-80"
+                          "group flex items-center py-3 text-2xl font-semibold transition-all duration-300 hover:translate-x-2 hover:text-cyber-text",
+                          item.disabled && "cursor-not-allowed opacity-80",
+                          activeSection === item.href?.replace("#", "")
+                            ? "text-cyber-text"
+                            : "text-cyber-muted"
                         )}
                       >
-                        <span className="mr-3 font-mono text-xs text-cyber-cyan/50">
+                        <span className={cn(
+                          "mr-3 font-mono text-xs transition-colors duration-300",
+                          activeSection === item.href?.replace("#", "") ? "text-cyber-cyan" : "text-cyber-cyan/50"
+                        )}>
                           0{index + 1}
                         </span>
                         {item.title}

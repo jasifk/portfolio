@@ -1,10 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import { AtSign, Phone, Send } from "lucide-react"
+import { AtSign, Check, Copy, Phone, Send } from "lucide-react"
 
 export default function Contact() {
   const [messageLength, setMessageLength] = useState(0)
+  const [copied, setCopied] = useState<"phone" | "email" | null>(null)
+
+  const handleCopy = (type: "phone" | "email", value: string) => {
+    navigator.clipboard.writeText(value).then(() => {
+      setCopied(type)
+      setTimeout(() => setCopied(null), 2000)
+    })
+  }
+
   return (
     <section id="contact" className="px-6 py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl">
@@ -25,29 +34,49 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <div className="glass-card flex items-start gap-4 p-5">
+              <button
+                onClick={() => handleCopy("phone", "+919567909210")}
+                className="glass-card group flex w-full cursor-pointer items-center gap-4 p-5 text-left transition-all duration-300 hover:border-cyber-cyan/30"
+              >
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-cyber-cyan/10">
                   <Phone className="size-5 text-cyber-cyan" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="font-semibold text-cyber-text">Call Me</h3>
                   <p className="mt-1 text-sm text-cyber-muted">
                     +91 9567909210
                   </p>
                 </div>
-              </div>
+                <div className="flex size-8 items-center justify-center rounded-md text-cyber-dim transition-all duration-200 group-hover:text-cyber-cyan">
+                  {copied === "phone" ? (
+                    <Check className="size-4 text-cyber-cyan" />
+                  ) : (
+                    <Copy className="size-4" />
+                  )}
+                </div>
+              </button>
 
-              <div className="glass-card flex items-start gap-4 p-5">
+              <button
+                onClick={() => handleCopy("email", "jasifkolangath@gmail.com")}
+                className="glass-card group flex w-full cursor-pointer items-center gap-4 p-5 text-left transition-all duration-300 hover:border-cyber-violet/30"
+              >
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-cyber-violet/10">
                   <AtSign className="size-5 text-cyber-violet" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="font-semibold text-cyber-text">Mail Me</h3>
                   <p className="mt-1 text-sm text-cyber-muted">
                     jasifkolangath@gmail.com
                   </p>
                 </div>
-              </div>
+                <div className="flex size-8 items-center justify-center rounded-md text-cyber-dim transition-all duration-200 group-hover:text-cyber-violet">
+                  {copied === "email" ? (
+                    <Check className="size-4 text-cyber-cyan" />
+                  ) : (
+                    <Copy className="size-4" />
+                  )}
+                </div>
+              </button>
             </div>
 
             {/* Decorative element */}
