@@ -1,5 +1,6 @@
 import { Inter as FontSans } from "next/font/google"
 import { Space_Grotesk as FontHeading } from "next/font/google"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import "@/styles/globals.css"
 import { siteConfig } from "@/config/site"
@@ -112,6 +113,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Providers>
           {children}
           <Analytics />
+          <SpeedInsights />
           <Toaster />
         </Providers>
       </body>

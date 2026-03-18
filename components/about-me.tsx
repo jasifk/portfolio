@@ -23,10 +23,10 @@ export default function AboutMe() {
               <div className="absolute -inset-3 animate-glow-pulse rounded-2xl bg-gradient-to-br from-cyber-cyan/20 via-cyber-violet/10 to-transparent opacity-60 blur-lg" />
               <div
                 onClick={handleScan}
-                className={`relative overflow-hidden rounded-2xl border border-white/10 ${scanning ? "cursor-default" : "cursor-crosshair"}`}
+                className={`group relative overflow-hidden rounded-2xl border border-white/10 ${scanning ? "cursor-default" : "cursor-crosshair"}`}
               >
                 <Image
-                  className={`size-72 object-cover transition-all duration-700 hover:scale-105 sm:size-80 ${scanning ? "brightness-90" : ""}`}
+                  className={`size-72 object-cover transition-all duration-700 group-hover:scale-105 sm:size-80 ${scanning ? "brightness-90" : ""}`}
                   src="/profile-pic.jpg"
                   alt="Profile picture"
                   width={320}
@@ -50,8 +50,10 @@ export default function AboutMe() {
                   />
                 )}
 
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-cyber-bg/50 to-transparent opacity-0 transition-opacity duration-500 hover:opacity-100" />
+                {/* Permanent dark base */}
+                <div className="pointer-events-none absolute inset-0 bg-cyber-bg/40 transition-opacity duration-500 group-hover:opacity-0" />
+                {/* Cyberpunk tint — fades away on hover */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyber-cyan/20 via-transparent to-cyber-violet/15 opacity-100 transition-opacity duration-500 group-hover:opacity-0" />
               </div>
             </div>
           </div>

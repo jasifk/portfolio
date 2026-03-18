@@ -87,8 +87,10 @@ export default function Work() {
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVQI12NgYmb+z8BQDwIMDAwMDIwM/xkYGBgYGP4zMPxnYPjPwJDAwJDAwAAA/w4GBRxTVmkAAAAASUVORK5CYII="
                   />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-cyber-bg/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  {/* Permanent dark base */}
+                  <div className="pointer-events-none absolute inset-0 rounded-xl bg-cyber-bg/40 transition-opacity duration-500 group-hover:opacity-0" />
+                  {/* Cyberpunk tint — fades away on hover */}
+                  <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-cyber-cyan/20 via-transparent to-cyber-violet/15 opacity-100 transition-opacity duration-500 group-hover:opacity-0" />
                 </div>
               </div>
 
